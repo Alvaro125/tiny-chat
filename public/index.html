@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="pt-br" class="h-full">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alpha EdTech | Chat em Tempo Real</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        #chat-messages { scroll-behavior: smooth; }
+    </style>
+</head>
+<body class="bg-gray-900 text-white h-full flex items-center justify-center">
+
+    <!-- Tela de Login / Registro -->
+    <div id="login-view" class="w-full max-w-md p-8 space-y-6 bg-gray-800 rounded-xl shadow-lg">
+        <div class="text-center">
+            <h1 class="text-3xl font-bold text-indigo-400">Bem-vindo ao Chat!</h1>
+            <p class="text-gray-400">Faça login ou registre-se para continuar</p>
+        </div>
+        <form id="login-form" class="space-y-4">
+            <div>
+                <label for="username" class="sr-only">Usuário</label>
+                <input id="username" name="username" type="text" required class="w-full px-4 py-2 bg-gray-700 border border-gray-600 rounded-md focus:ring-indigo-500 focus:border-indigo-500" placeholder="Nome de usuário">
+            </div>
+            <div>
+                <label for="password" class="sr-only">Senha</label>
+                <input id="password" name="password" type="password" required class="w-full px-4 py-2 bg-gray-700 border border-gray-600 rounded-md focus:ring-indigo-500 focus:border-indigo-500" placeholder="Senha">
+            </div>
+            <div id="auth-error" class="text-red-400 text-sm hidden"></div>
+            <div class="flex flex-col sm:flex-row gap-2">
+                <button type="submit" id="login-btn" class="flex-1 inline-flex justify-center w-full px-4 py-2 font-semibold text-white bg-indigo-600 border border-transparent rounded-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                    Entrar
+                </button>
+                <button type="button" id="register-btn" class="flex-1 inline-flex justify-center w-full px-4 py-2 font-semibold text-indigo-300 bg-gray-700 border border-gray-600 rounded-md hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500">
+                    Registrar
+                </button>
+            </div>
+        </form>
+    </div>
+
+    <!-- Tela do Chat -->
+    <div id="chat-view" class="hidden h-full w-full flex flex-col">
+       <header class="flex-shrink-0 bg-gray-800 p-4 flex justify-between items-center shadow-md">
+            <div>
+                <h1 id="room-title" class="text-xl font-bold text-indigo-400">Selecione uma sala</h1>
+                <p id="welcome-user" class="text-sm text-gray-400"></p>
+            </div>
+            <div>
+                <button id="join-room-btn" class="px-4 py-2 font-semibold text-white bg-indigo-600 rounded-md hover:bg-indigo-700">
+                    Entrar/Criar Sala
+                </button>
+                 <button id="logout-btn" class="ml-2 px-4 py-2 font-semibold text-indigo-300 bg-gray-700 rounded-md hover:bg-gray-600">
+                    Sair
+                </button>
+            </div>
+       </header>
+
+       <main id="chat-messages" class="flex-1 p-4 overflow-y-auto space-y-4 bg-gray-900">
+           <!-- Mensagens serão inseridas aqui -->
+       </main>
+
+       <footer class="flex-shrink-0 p-4 bg-gray-800">
+            <form id="message-form" class="flex gap-2">
+                <input id="message-input" type="text" class="flex-1 px-4 py-2 bg-gray-700 border border-gray-600 rounded-md focus:ring-indigo-500 focus:border-indigo-500" placeholder="Digite sua mensagem..." autocomplete="off">
+                <button type="submit" class="px-6 py-2 font-semibold text-white bg-indigo-600 rounded-md hover:bg-indigo-700 disabled:bg-indigo-900 disabled:cursor-not-allowed" disabled>Enviar</button>
+            </form>
+       </footer>
+    </div>
+
+    <!-- Modal para Entrar/Criar Sala -->
+    <div id="room-modal" class="hidden fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center">
+        <div class="bg-gray-800 p-8 rounded-xl shadow-lg w-full max-w-sm space-y-4">
+            <h2 class="text-2xl font-bold text-center text-indigo-400">Entrar ou Criar Sala</h2>
+            <form id="room-form">
+                <input id="room-name-input" type="text" required class="w-full px-4 py-2 bg-gray-700 border border-gray-600 rounded-md focus:ring-indigo-500 focus:border-indigo-500" placeholder="Nome da sala">
+                 <div id="room-error" class="text-red-400 text-sm hidden mt-2"></div>
+                <div class="mt-4 flex gap-2">
+                    <button type="submit" class="flex-1 w-full px-4 py-2 font-semibold text-white bg-indigo-600 rounded-md hover:bg-indigo-700">Confirmar</button>
+                    <button type="button" id="close-modal-btn" class="flex-1 w-full px-4 py-2 font-semibold text-indigo-300 bg-gray-700 rounded-md hover:bg-gray-600">Cancelar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="/main.js"></script>
+</body>
+</html>
