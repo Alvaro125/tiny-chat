@@ -80,6 +80,7 @@ function createWebSocketServer(server, chatService) {
           }
         }
       } catch (error) {
+        console.log('Erro ao processar mensagem:', error);
          ws.send(JSON.stringify({ type: 'ERROR', message: error.message }));
       }
     });

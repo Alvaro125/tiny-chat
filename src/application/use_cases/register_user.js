@@ -15,8 +15,15 @@ class RegisterUser {
 
     const hashedPassword = await bcrypt.hash(password, 10);
     const newUser = new User(uuidv4(), username, hashedPassword);
-    
-    return this.userRepository.save(newUser);
+    const savedUser = await this.userRepository.save(newUser);
+    console.log(`User registered: ${savedUser}`);
+    if (!savedUser) {
+      throw new Error('Failed to register user');
+    }
+    return  {
+      id: savedUser.id,
+      username: savedUser.username,
+    };
   }
 }
 

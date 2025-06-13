@@ -6,9 +6,12 @@ function createAuthRoutes(authService) {
   router.post('/register', async (req, res) => {
     try {
       const { username, password } = req.body;
+      console.log(`Registering user: ${username}`);
       const user = await authService.register(username, password);
+      console.log(`User registered: ${user}`);
       res.status(201).json({ id: user.id, username: user.username });
     } catch (error) {
+      console.error(error);
       res.status(400).json({ message: error.message });
     }
   });

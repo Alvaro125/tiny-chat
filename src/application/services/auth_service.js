@@ -8,6 +8,7 @@ class AuthService {
 
   async register(username, password) {
     const registerUser = new RegisterUser(this.userRepository);
+    console.log(`Registering user: ${registerUser}`);
     return registerUser.execute(username, password);
   }
 

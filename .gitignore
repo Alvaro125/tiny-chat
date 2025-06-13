@@ -2,3 +2,6 @@
 /.idx
 /.vscode
 /node_modules
+/image*
+/slide.pdf
+/slide.md
